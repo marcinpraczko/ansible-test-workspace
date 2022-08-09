@@ -11,4 +11,4 @@ file:
   /home/vagrant/bin/goss-linux-amd64:
     exists: true
     filetype: file
-    sha256: 4c82470543350371531f26f9d3b0265bff9e93d80d952f40cca212fc2f87864d
+    sha256: 432308ebca0caf8165d45bd27e3262126aad9d15572ac8cb3149b3c91f75aace

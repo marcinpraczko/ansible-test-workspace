@@ -2,4 +2,5 @@
 
 echo ""
 echo "[Ansible-Galaxy] Install ansible-goss"
-ansible-galaxy install marcinpraczko.goss-install
+ansible-galaxy role install marcinpraczko.goss-install,v0.1.5
+
