@@ -17,13 +17,6 @@ Finally I decided to write something which I am really familar with which will a
 Lets see if this will help me be more productive.
 
 
-## TODO Today
-
-- [X] Setup Vagrant with sync to /vagrant
-- [X] Run simple commands - in vagrant
-- [ ] Run goss verification that is working
-
-
 ## Quick initial start
 
 ```bash
