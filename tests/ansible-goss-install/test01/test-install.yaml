@@ -1,0 +1,11 @@
+- name: "Install goss in home directory"
+  hosts: localhost
+  connection: local
+  become: False
+  gather_facts: True
+
+  vars:
+    goss_dst_dir: "{{ ansible_env.HOME }}/bin"
+
+  roles:
+    - "marcinpraczko.goss-install"
