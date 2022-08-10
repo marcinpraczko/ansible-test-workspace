@@ -63,10 +63,18 @@ vagrant-snapshot-create-before-tests: ## CONFIG: Create initial snapshot Before 
 	@echo "====================================="
 	vagrant snapshot save init-before-tests
 
+.PHONY: vagrant-snapshot-restore-init
+vagrant-snapshot-restore-init: ## CONFIG: Restore snapshot 'init-after-start'
+	@echo ""
+	@echo "====================================="
+	@echo "VAGRANT SNAPSHOT Resotre: 'init-after-start'"
+	@echo "====================================="
+	vagrant snapshot restore init-after-start
+
 .PHONY: vagrant-snapshot-restore-before-tests
 vagrant-snapshot-restore-before-tests: ## CONFIG: Restore snapshot 'init-before-tests'
 	@echo ""
 	@echo "====================================="
-	@echo "VAGRANT SNAPSHOT CREATE BEFORE TESTS"
+	@echo "VAGRANT SNAPSHOT Restore 'init-before-tests'"
 	@echo "====================================="
-	vagrant snapshot resotre init-before-tests
+	vagrant snapshot restore init-before-tests
