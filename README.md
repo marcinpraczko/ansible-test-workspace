@@ -27,6 +27,8 @@ Vagrant is configured to forward SSH keys - so please add this SSH Key which all
 
 ### Start Vagrant
 
+Following command with create Vagrant VM and will run provissioners (first time).
+
 ```bash
 source workspace-localhost.sh   ## This setup helpers Makefile for wokring on Host (local machine)
 make vagrant-up
@@ -38,7 +40,7 @@ make vagrant-up
 make vagrant-snapshot-create-init   ## Create initial snapshot - after all installation
 ```
 
-### Install required packages on VM
+### Run update and upgrade (Optional / Recommended)
 
 Follow those steps to install required packges on Vagrant VM.
 

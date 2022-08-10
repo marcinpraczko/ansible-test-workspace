@@ -22,9 +22,11 @@ Vagrant.configure("2") do |config|
   end
 
   # --- Basic provisioning ---
-  # Run shell scripts
-  # RUN   : vagrant provision-with goss-install-test01
-  # TODO  : Worth to consider: https://groups.google.com/g/vagrant-up/c/7sOiG7CUpto - Choose provisioner name for running provision
+  # NOTE: Credits: https://groups.google.com/g/vagrant-up/c/7sOiG7CUpto
+  # RUN   : vagrant provision --provision-with 00-init-install-req-tools
+  config.vm.provision "00-init-install-req-tools", type: "shell", 
+    inline: "/bin/bash /vagrant/provisioning/shell/01-init-install-required-tools.sh"
+
   # FIXME : NOT Working so far ---> Not found files in paths
   # config.vm.provision "goss-install-test01", type: "shell", 
   #   inline: "/bin/bash /vagrant/tests/ansible-goss-install/test01/test-run.sh"
