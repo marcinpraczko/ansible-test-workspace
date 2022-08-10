@@ -31,6 +31,14 @@ vagrant-up: vagrant-status vagrant-snapshot-list
 	@echo "====================================="
 	vagrant up
 
+.PHONY: vagrant-provision-init
+vagrant-provision-init: ## INIT: Vagrant provision with 'initial' tasks.
+	@echo ""
+	@echo "====================================="
+	@echo "VAGRANT PROVISION WITH: 00-init-install-req-tools"
+	@echo "====================================="
+	vagrant provision --provision-with 00-init-install-req-tools
+
 .PHONY: vagrant-status
 vagrant-status: ## CHECK: Vagrant Status
 	@echo ""

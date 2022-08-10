@@ -24,12 +24,8 @@ help: ## HELP: Show this help message.
 
 .PHONY: init
 init: ## INIT: Run ALL initial scripts
-init: 00-init-apt-update-and-upgrade.sh 01-init-apt-install-required-tools
+init: 00-init-apt-update-and-upgrade.sh
 
 .PHONY: 00-init-apt-update-and-upgrade.sh
 00-init-apt-update-and-upgrade.sh: ## INIT: APT Update and upgrade
-	cd provisioning/shell && ./01-init-apt-install-required-tools.sh
-
-.PHONY: 01-init-apt-install-required-tools
-01-init-apt-install-required-tools: ## INIT: Install required tools
-	cd provisioning/shell && ./01-init-apt-install-required-tools.sh
+	cd provisioning/shell && ./00-init-apt-update-and-upgrade.sh
