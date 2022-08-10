@@ -1,0 +1,72 @@
+# ============================================================================
+# Based on page:
+#   https://gist.github.com/prwhite/8168133
+# 
+# Example of self-documented makefile
+#
+# Add the following 'help' target to your Makefile
+# And add help text after each target name starting with '\#\#'
+# ============================================================================
+
+# Variables related with folders
+LCD = $(shell pwd)
+
+.PHONY: help
+help: ## HELP: Show this help message.
+	@echo 'usage: make [target] ...'
+	@echo
+	@echo 'Version: $(THIS_MAKEFILE_VER)' 
+	@echo
+	@echo 'Targets:'
+	@echo '========'
+	@egrep '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | column -t -c 2 -s ':#'
+
+
+.PHONY: vagrant-up
+vagrant-up: ## INIT: Vagrant UP - with all pre-requirements
+vagrant-up: vagrant-status vagrant-snapshot-list
+	@echo ""
+	@echo "====================================="
+	@echo "VAGRANT UP"
+	@echo "====================================="
+	vagrant up
+
+.PHONY: vagrant-status
+vagrant-status: ## CHECK: Vagrant Status
+	@echo ""
+	@echo "====================================="
+	@echo "VAGRANT STATUS"
+	@echo "====================================="
+	vagrant status
+
+.PHONY: vagrant-snapshot-list
+vagrant-snapshot-list: ## CHECK: Vagrant list snapshots
+	@echo ""
+	@echo "====================================="
+	@echo "VAGRANT SNAPSHOT LIST"
+	@echo "====================================="
+	vagrant snapshot list
+
+.PHONY: vagrant-snapshot-create-init
+vagrant-snapshot-create-init: ## CONFIG: Create initial snapshot (After initial setup of VM)
+	@echo ""
+	@echo "====================================="
+	@echo "VAGRANT SNAPSHOT CREATE INIT"
+	@echo "====================================="
+	vagrant snapshot save init-after-start
+
+.PHONY: vagrant-snapshot-create-before-tests
+vagrant-snapshot-create-before-tests: ## CONFIG: Create initial snapshot Before running tests
+	@echo ""
+	@echo "====================================="
+	@echo "VAGRANT SNAPSHOT CREATE BEFORE TESTS"
+	@echo "====================================="
+	vagrant snapshot save init-before-tests
+
+.PHONY: vagrant-snapshot-restore-before-tests
+vagrant-snapshot-restore-before-tests: ## CONFIG: Restore snapshot 'init-before-tests'
+	@echo ""
+	@echo "====================================="
+	@echo "VAGRANT SNAPSHOT CREATE BEFORE TESTS"
+	@echo "====================================="
+	vagrant snapshot resotre init-before-tests

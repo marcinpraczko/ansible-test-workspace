@@ -19,39 +19,50 @@ Lets see if this will help me be more productive.
 
 ## Quick initial start
 
+### Add SSH Key for accessing GitHub Priv repos
+
+It is strongly recommended to add SSH Keys to SSH Ageant on host before starting Vagrant.
+Vagrant is configured to forward SSH keys - so please add this SSH Key which allow pull and push to github repos.
+
+
+### Start Vagrant
+
 ```bash
-vagrant up  ## Is taking very long time - first time (Upgdate / Install VirtualBox Guest / etc)
+source workspace-localhost.sh   ## This setup helpers Makefile for wokring on Host (local machine)
+make vagrant-up
 ```
 
-## Create initial snapshot from VM
+### Create initial snapshot from VM
 
 ```bash
-vagrant snapshot save init-after-star   ## Create initial snapshot - after all installation
+make vagrant-snapshot-create-init   ## Create initial snapshot - after all installation
 ```
 
-## Install required packages on VM
+### Install required packages on VM
 
 Follow those steps to install required packges on Vagrant VM.
 
 ```bash
-vagrant ssh  ## Login to Vagrant as vagrant user
-
-# In vagrant
-sudo -i -u root
-
-# in Vagrant as root user
-cd /vagrant/provisioning/shell
-
-./01-init-apt-install-required-tools.sh  ## This can take long time as well
+vagrant ssh
 ```
 
-## Create snapshot before tests
+- In vagrant
 
 ```bash
-vagrant snapshot save before-tests
+sudo -i -u root
+cd /vagrant
+source workspace-vagrant-vm.sh
+
+make init  ## This can take long time as well
 ```
 
-## Run tests
+## Running tests
+
+### Create snapshot before tests
+
+```bash
+make vagrant-snapshot-create-before-tests
+```
 
 ### Test ansible-install-goss
 
@@ -66,5 +77,5 @@ cd /vagrant/tests/ansible-goss-install/test01/
 If one need to restore snapshot for re-testing - one can do that with following commands:
 
 ```bash
-vagrant snapshot restore before-tests
+make vagrant-snapshot-resotre-before-tests
 ```
